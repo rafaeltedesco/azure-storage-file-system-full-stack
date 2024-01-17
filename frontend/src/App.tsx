@@ -2,27 +2,28 @@ import './App.css'
 import { useDropzone } from 'react-dropzone'
 import SendButton from './components/Buttons/SendButton';
 import { useCallback, useMemo, useState } from 'react';
+import { objectUrl } from './types/Buttons';
 
 function App() {
 
-  const [files, setFiles] = useState<File[]>([]);
+  const [files, setFiles] = useState<[File, objectUrl][]>([]);
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const newFiles = acceptedFiles;
     const formData = new FormData();
-    const newTempFileList: File[] = [];
+    const newTempFileList: [File, objectUrl][] = [];
     newFiles.forEach((file) => {
       
-      const hasSameFile = files.some(tempFile => tempFile.name === file.name);
+      const hasSameFile = files.some(([tempFile]) => tempFile.name === file.name);
         if (hasSameFile) {
           alert('You\'ve already sent this file');
           return;
         }
       formData.append('images', file);
-    
-      newTempFileList.push(file);
+      newTempFileList.push([file, URL.createObjectURL(file) ]);
     
     })
+
     setFiles((oldFiles) => {
       return [...oldFiles, ...newTempFileList];
     })
@@ -34,17 +35,16 @@ function App() {
   } });
 
   const removeFileFromTemp = (idx: number) => {
-    console.log(idx)
     setFiles((currentFiles) => {
+      URL.revokeObjectURL(currentFiles[idx][1]);
       return [...currentFiles.slice(0, idx), ...currentFiles.slice(idx+1)]
     } )
   }
 
   const renderFiles = useMemo(() => files.map((file, idx) => {
-    const imageUrl = URL.createObjectURL(file);
     return (
-    <li key={file.name}>
-      <a className="url-preview" href={imageUrl} target='_blank'>{ file.name } - { file.size } bytes</a>
+    <li key={file[0].name}>
+      <a className="url-preview" href={file[1]} target='_blank'>{ file[0].name } - { file[0].size } bytes</a>
       <button onClick={() => removeFileFromTemp(idx)}>X</button>
     </li>
     )}), [files])
