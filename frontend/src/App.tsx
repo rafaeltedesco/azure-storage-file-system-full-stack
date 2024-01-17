@@ -28,16 +28,10 @@ function App() {
     })
       
   }, [files])
-    // setFiles((currentFiles) => {
-    //   const tempFiles = currentFiles.values();
 
-    //   for (let i = 0; i < currentFiles.length; i++) {
-    //     acceptedFiles.includes(currentFiles[i])
-    //   }
-    // });
-
-
-  const { getRootProps, getInputProps  } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps  } = useDropzone({ onDrop, accept: {
+    'image/*': []
+  } });
 
   const removeFileFromTemp = (idx: number) => {
     console.log(idx)
@@ -76,7 +70,7 @@ function App() {
         <div className="image-container">
           <div {...getRootProps({className: 'dropzone'})} className="dropzone">
             <input {...getInputProps()} />
-            <p className="drag-message">Drag 'n' drop some files here, or click to select files</p>
+            <p className="drag-message">Drag 'n' drop some image files here, or click to select files</p>
           </div>
         </div>
     </section>
