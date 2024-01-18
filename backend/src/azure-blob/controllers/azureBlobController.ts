@@ -1,8 +1,8 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { AzureAuthProvider } from 'src/authenticators/providers/auth.service';
 
-@Controller()
-export class FileUploaderController {
+@Controller('blobs')
+export class AzureBlobController {
   constructor(private azureAuthProvider: AzureAuthProvider) {}
 
   @Get('files/:containerName')

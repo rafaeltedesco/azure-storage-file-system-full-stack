@@ -2,14 +2,14 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import FileUploaderModule from './file-uploader';
+import AzureBlobModule from './azure-blob';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    FileUploaderModule,
+    AzureBlobModule,
   ],
   controllers: [AppController],
   providers: [AppService],
