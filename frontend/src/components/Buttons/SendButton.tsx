@@ -9,15 +9,17 @@ export default function SendButton({ files, resetFiles }: FileButtonPropos) {
     });
 
     try {
-      const result = await axios.post('http://localhost:7071/api/uploadImageHttp', formData, {
+      const result = await axios.post('http://localhost:7071/blobs/upload/images', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
-        }
+        },
       })
       console.log(result);
-      resetFiles();
     } catch (err) {
       console.error(err);
+    }
+    finally {
+      resetFiles();
     }
   }
 
