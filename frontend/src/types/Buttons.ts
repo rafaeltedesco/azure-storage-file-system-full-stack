@@ -1,7 +1,8 @@
 export type objectUrl = string;
 
 export type FileButtonPropos = {
-  files: [File, objectUrl][]
+  files: [File, objectUrl][],
+  resetFiles(): void,
 }
 
 
