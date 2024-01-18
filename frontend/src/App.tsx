@@ -10,7 +10,6 @@ function App() {
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const newFiles = acceptedFiles;
-    const formData = new FormData();
     const newTempFileList: [File, objectUrl][] = [];
     newFiles.forEach((file) => {
       
@@ -19,7 +18,6 @@ function App() {
           alert('You\'ve already sent this file');
           return;
         }
-      formData.append('images', file);
       newTempFileList.push([file, URL.createObjectURL(file) ]);
     
     })
