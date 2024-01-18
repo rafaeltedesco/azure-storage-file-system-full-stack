@@ -1,11 +1,11 @@
 import { FileButtonPropos } from '../../types/Buttons';
 import axios from 'axios';
 
-export default function SendButton({ files }: FileButtonPropos) {
+export default function SendButton({ files, resetFiles }: FileButtonPropos) {
   async function submit() {
     const formData = new FormData();
     files.forEach(([file]) => {
-      formData.append('images', file);
+      formData.append(file.name, file);
     });
 
     try {
@@ -15,6 +15,7 @@ export default function SendButton({ files }: FileButtonPropos) {
         }
       })
       console.log(result);
+      resetFiles();
     } catch (err) {
       console.error(err);
     }
