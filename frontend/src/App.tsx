@@ -61,7 +61,7 @@ function App() {
           { !!files.length && (
             <div className="side-bar-body">
               <ul className="files-list">{renderFiles}</ul>
-              <SendButton files={files} />
+              <SendButton resetFiles={()=> setFiles([])} files={files} />
             </div>
           )}
         </aside>
