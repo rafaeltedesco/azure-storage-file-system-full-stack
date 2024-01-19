@@ -1,1 +1,8 @@
 .vscode
+
+# Local Storage
+__blobstorage__/*
+__azurite*.json
+
+# compose-extra
+compose-kafka.yml
