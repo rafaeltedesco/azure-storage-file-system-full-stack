@@ -6,6 +6,7 @@ import AzureBlobModule from './azure-blob';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: '.env.dev',
     }),
     AzureBlobModule,
   ],
