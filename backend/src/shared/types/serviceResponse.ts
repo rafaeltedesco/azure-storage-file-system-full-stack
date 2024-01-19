@@ -9,6 +9,16 @@ type ServiceResponse<T> = {
   data: T;
 };
 
+export type ContainerDTO = {
+  containerName: string;
+};
+
+export type ContainerCreationDTO = ContainerDTO;
+
+export type ListContainersOutputDTO = {
+  containers: ContainerDTO[];
+};
+
 export type FileCreated = {
   requestId: string;
   filename: string;
