@@ -13,7 +13,7 @@
 
 ##### Screenshots
 
-![drag'ndropsystem](./frontend/screenshots/front.png)
+![drag'ndropsystem](./frontend/screenshots/1901_front.png)
 
 ---
 
