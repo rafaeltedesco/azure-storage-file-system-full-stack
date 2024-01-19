@@ -1,7 +1,14 @@
+import { FileUploaderService } from '../../services/FileUploaderService';
 import { FileButtonPropos } from '../../types/Buttons';
-import axios from 'axios';
 
-export default function SendButton({ files, resetFiles }: FileButtonPropos) {
+const apiService = new FileUploaderService();
+
+export default function SendButton({ files, resetFiles, containerName }: FileButtonPropos) {
+  
+  async function sendImages(formData: FormData) {
+    await apiService.sendImages({ formData, containerName });
+  }
+  
   async function submit() {
     const formData = new FormData();
     files.forEach(([file]) => {
@@ -9,15 +16,10 @@ export default function SendButton({ files, resetFiles }: FileButtonPropos) {
     });
 
     try {
-      const result = await axios.post('http://localhost:7071/blobs/upload/images', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      console.log(result);
+      await sendImages(formData);
     } catch (err) {
       console.error(err);
-    }
+      }
     finally {
       resetFiles();
     }
