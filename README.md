@@ -78,7 +78,7 @@ _POST /blobs/upload/images_
 
 _GET /blobs/list-containers_
 
-![list-containers](./backend/screenshots/list_containers.png)
+![list-containers](./backend/screenshots/1901_list_containers.png)
 
 ---
 
