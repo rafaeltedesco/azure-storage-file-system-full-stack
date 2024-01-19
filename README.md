@@ -5,13 +5,13 @@
 
 ### FRONTEND
 
-##### Technologies
+#### Technologies
 
 - React with Vite
 - Axios
 - React DropZone
 
-##### Screenshots
+#### Screenshots
 
 ![drag'ndropsystem](./frontend/screenshots/1901_front.png)
 
@@ -19,14 +19,56 @@
 
 # BACKEND
 
-##### Technologies
+#### Technologies
 
 - Nest.js
 - Multer
 - Azure Identity
 - Azure Storage Blob
 
-##### Screenshots
+#### Endpoints
+---
+
+##### Upload Images
+```json
+POST http://localhost:7071/blobs/upload/test-azurite
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="images"; filename="azure_blobs.png"
+Content-Type: image/jpeg
+
+< /yourpath/azure_blobs.png
+--boundary--
+```
+
+---
+##### List Files From Container
+
+```json
+GET http://localhost:7071/blobs/list-files/:containerName
+```
+---
+
+##### List Containers
+```json
+GET http://localhost:7071/blobs/list-containers
+```
+---
+
+##### Create Container
+```json 
+POST http://localhost:7071/blobs/create-container
+Content-Type: application/json
+
+{
+  "containerName": "test-azurite"
+}
+```
+
+---
+
+#### Screenshots
 
 _POST /blobs/upload/images_
 
@@ -44,6 +86,11 @@ _GET /blobs/list-files_
 
 ![list-files](./backend/screenshots/list_blobs.png)
 
+---
+
+_POST /blobs/create-container_
+
+![create-container](./backend/screenshots/create_container.png)
 
 
 
