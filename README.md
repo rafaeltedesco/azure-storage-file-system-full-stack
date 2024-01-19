@@ -30,7 +30,7 @@
 ---
 
 ##### Upload Images
-```json
+```http
 POST http://localhost:7071/blobs/upload/test-azurite
 Content-Type: multipart/form-data; boundary=boundary
 
@@ -45,19 +45,19 @@ Content-Type: image/jpeg
 ---
 ##### List Files From Container
 
-```json
+```http
 GET http://localhost:7071/blobs/list-files/:containerName
 ```
 ---
 
 ##### List Containers
-```json
+```http
 GET http://localhost:7071/blobs/list-containers
 ```
 ---
 
 ##### Create Container
-```json 
+```http
 POST http://localhost:7071/blobs/create-container
 Content-Type: application/json
 
