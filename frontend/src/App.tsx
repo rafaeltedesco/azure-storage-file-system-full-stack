@@ -3,10 +3,12 @@ import { useDropzone } from 'react-dropzone'
 import SendButton from './components/Buttons/SendButton';
 import { useCallback, useMemo, useState } from 'react';
 import { objectUrl } from './types/Buttons';
+import ContainerName from './components/Inputs/ContainerName';
 
 function App() {
 
   const [files, setFiles] = useState<[File, objectUrl][]>([]);
+  const [containerName, setContainerName] = useState('');
 
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const newFiles = acceptedFiles;
@@ -61,7 +63,10 @@ function App() {
           { !!files.length && (
             <div className="side-bar-body">
               <ul className="files-list">{renderFiles}</ul>
-              <SendButton resetFiles={()=> setFiles([])} files={files} />
+              <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
+                <ContainerName handleContainerName={{ setContainerName, containerName }}/>
+                <SendButton resetFiles={()=> setFiles([])} files={files} containerName={containerName} />
+              </div>
             </div>
           )}
         </aside>
