@@ -1,4 +1,4 @@
-import { BlobServiceClient } from '@azure/storage-blob';
+import { BlobServiceClient, ContainerItem } from '@azure/storage-blob';
 import { Injectable } from '@nestjs/common';
 import { AzureAuthProvider } from 'src/authenticators/providers/auth.service';
 import {
@@ -38,5 +38,17 @@ export class ContainerClientService {
         containerClient,
       },
     };
+  }
+
+  public async createContainer(containerName: string) {
+    await this.azureClient.createContainer(containerName);
+  }
+
+  public async listContainers(): Promise<ContainerItem[]> {
+    const containers: ContainerItem[] = [];
+    for await (const container of this.azureClient.listContainers()) {
+      containers.push(container);
+    }
+    return containers;
   }
 }
