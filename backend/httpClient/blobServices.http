@@ -1,0 +1,27 @@
+### Create Container
+POST http://localhost:7071/blobs/create-container
+Content-Type: application/json
+
+{
+  "containerName": "test-azurite"
+}
+
+
+### List Files From container
+# http://localhost:7071/blobs/list-files/:containerName
+
+GET http://localhost:7071/blobs/list-files/test-azurite
+
+### List Containers
+GET http://localhost:7071/blobs/list-containers
+
+### Upload Images
+POST http://localhost:7071/blobs/upload/test-azurite
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="images"; filename="azure_blobs.png"
+Content-Type: image/jpeg
+
+< /Users/rafaeltedesco/youtube/upload-multiple/backend/screenshots/azure_blobs.png
+--boundary--
