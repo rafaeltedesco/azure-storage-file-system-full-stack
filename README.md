@@ -25,6 +25,7 @@
 - Multer
 - Azure Identity
 - Azure Storage Blob
+- Azurite for local development
 
 #### Endpoints
 ---
