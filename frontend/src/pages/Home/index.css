@@ -11,16 +11,6 @@
 }
 
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #333;
-  padding: 0.8rem 2rem;
-  font-size: 12px;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  filter: drop-shadow(0px 3px 4px #000000);
-}
 
 .dropzone {
   display: flex;
@@ -104,50 +94,6 @@ header {
 
 .url-preview:hover {
   color: #fff;
-}
-
-.button-1 {
-  background-color: #EA4C89;
-  border-radius: 0px 8px 8px 0px;
-  height: 50px;
-  font-size: 1.2rem;
-  border-style: none;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 20px;
-  list-style: none;
-  margin: 0;
-  outline: none;
-  padding: 10px 30px;
-  text-align: center;
-  text-decoration: none;
-  transition: color 100ms;
-  vertical-align: baseline;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
-
-.container-input {
-  height: 50px;
-  border: none;
-  border-style: none;
-  flex: 1;
-  font-size: 1.1rem;
-  padding: 10px 20px;
-  border-radius: 8px 0 0 8px;
-  color: #ccc;
-  outline: none;
-}
-
-.button-1:hover,
-.button-1:focus {
-  background-color: #F082AC;
 }
 
 .center {

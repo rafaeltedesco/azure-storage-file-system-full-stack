@@ -1,0 +1,12 @@
+
+.container-input {
+  height: 50px;
+  border: none;
+  border-style: none;
+  font-size: 1.1rem;
+  padding: 10px 16px;
+  border-radius: 8px 0 0 8px;
+  color: #ccc;
+  min-width: 250px;
+  outline: none;
+}
