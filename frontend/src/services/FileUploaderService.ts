@@ -32,7 +32,6 @@ export class FileUploaderService {
             this.createContainer(containerName);
             console.log('container created... trying to send images again')
             this.sendImages({ formData, containerName })
-            this.containerCreationAttempted = false;
           } else {
             console.error('Erro ao criar container');
             throw err;
