@@ -1,12 +1,19 @@
+import './index.css';
 import { FileUploaderService } from '../../services/FileUploaderService';
 import { FileButtonPropos } from '../../types/Buttons';
+import { useContext } from 'react';
+import { ImageUploaderContext } from '../../providers/ImageUploaderContext';
 
-const apiService = new FileUploaderService();
+export default function SendButton({ files, resetFiles }: FileButtonPropos) {
+  let operationSucceeded = false;
+  const { containerName } = useContext(ImageUploaderContext)
+  const minLength = 3;
+  const isDisabled = () => containerName.length < minLength;
 
-export default function SendButton({ files, resetFiles, containerName }: FileButtonPropos) {
-  
   async function sendImages(formData: FormData) {
+    const apiService = new FileUploaderService();
     await apiService.sendImages({ formData, containerName });
+    return true;
   }
   
   async function submit() {
@@ -16,19 +23,21 @@ export default function SendButton({ files, resetFiles, containerName }: FileBut
     });
 
     try {
-      await sendImages(formData);
+      operationSucceeded = await sendImages(formData);
     } catch (err) {
       console.error(err);
       }
     finally {
-      resetFiles();
+      if (operationSucceeded) {
+        resetFiles();
+      }
     }
   }
 
   return (
     <>
       <div className="right">
-        <button className="button-1" onClick={submit}>Load</button>
+        <button disabled={isDisabled()} className={`button-1 ${isDisabled() ? "disabled" : "active"}`} onClick={submit}>Load</button>
       </div>
     </>
   )
