@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import Home from './pages/Home/index.tsx';
 import ListContainers from './pages/ListContainers/index.tsx';
+import LoadingState from'./context/loading/LoadingState.jsx';
 
 const router = createBrowserRouter([{
   path: '/',
@@ -18,6 +19,8 @@ const router = createBrowserRouter([{
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
+    <LoadingState>
     <RouterProvider router={router} />
+    </LoadingState>
   </React.StrictMode>,
 )
