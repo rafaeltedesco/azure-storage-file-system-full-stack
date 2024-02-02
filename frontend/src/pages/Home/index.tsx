@@ -6,15 +6,15 @@ import { objectUrl } from '../../types/Buttons';
 import { ImageUploaderContext } from '../../providers/ImageUploaderContext';
 import ContainerNameInput from '../../components/Inputs/ContainerNameInput';
 import Header from '../../components/Header';
-import loadingContext from '../../context/loading/loadingContext.jsx';
-import Loader from '../../components/Loader/Loader.jsx';
+import {loadingContext} from '../../context/loading/loadingContext';
+import Loader from '../../components/Loader/Loader';
 
 export default function Home() {
 
   const [files, setFiles] = useState<[File, objectUrl][]>([]);
   const [containerName, setContainerName] = useState('');
   const context = useContext(loadingContext);
-  const {loading} = context;
+  const { loading } = context as { loading: boolean };
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const newFiles = acceptedFiles;
     const newTempFileList: [File, objectUrl][] = [];

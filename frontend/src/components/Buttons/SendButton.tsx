@@ -3,7 +3,9 @@ import { FileUploaderService } from '../../services/FileUploaderService';
 import { FileButtonPropos } from '../../types/Buttons';
 import { useContext } from 'react';
 import { ImageUploaderContext } from '../../providers/ImageUploaderContext';
-import loadingContext from '../../context/loading/loadingContext.jsx';
+// Correct import for named export
+import { loadingContext } from '../../context/loading/loadingContext';
+
 
 export default function SendButton({ files, resetFiles }: FileButtonPropos) {
   
@@ -12,7 +14,10 @@ export default function SendButton({ files, resetFiles }: FileButtonPropos) {
   const minLength = 3;
   const isDisabled = () => containerName.length < minLength;
   const context = useContext(loadingContext);
-  const {handleLoading, handleNotLoading} = context;
+  const { handleLoading, handleNotLoading } = context as {
+    handleLoading: () => void;
+    handleNotLoading: () => void;
+  };
 
   async function sendImages(formData: FormData) {
     const apiService = new FileUploaderService();

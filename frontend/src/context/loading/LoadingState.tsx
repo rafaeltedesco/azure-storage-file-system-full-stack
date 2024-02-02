@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import loadingContext from './loadingContext';
+import {loadingContext} from './loadingContext';
 
-const LoadingState = (props) => {
+const LoadingState = (props: React.PropsWithChildren) => {
     const[loading,setLoading] = useState(false);
 
     const handleLoading = () => {
