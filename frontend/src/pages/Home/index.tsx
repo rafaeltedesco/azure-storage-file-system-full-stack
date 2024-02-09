@@ -1,17 +1,20 @@
 import './index.css';
 import { useDropzone } from 'react-dropzone'
 import SendButton from '../../components/Buttons/SendButton';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useContext, useMemo, useState } from 'react';
 import { objectUrl } from '../../types/Buttons';
 import { ImageUploaderContext } from '../../providers/ImageUploaderContext';
 import ContainerNameInput from '../../components/Inputs/ContainerNameInput';
 import Header from '../../components/Header';
+import {loadingContext} from '../../context/loading/loadingContext';
+import Loader from '../../components/Loader/Loader';
 
 export default function Home() {
 
   const [files, setFiles] = useState<[File, objectUrl][]>([]);
   const [containerName, setContainerName] = useState('');
-  
+  const context = useContext(loadingContext);
+  const { loading } = context as { loading: boolean };
   const onDrop = useCallback((acceptedFiles: File[]) => {
     const newFiles = acceptedFiles;
     const newTempFileList: [File, objectUrl][] = [];
@@ -64,6 +67,7 @@ export default function Home() {
             { !!files.length && (
               <div className="side-bar-body">
                 <ul className="files-list">{renderFiles}</ul>
+                {loading?<Loader/>:''}
                 <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center"}}>
                   <ContainerNameInput />
                   <SendButton resetFiles={()=> setFiles([])} files={files} />
